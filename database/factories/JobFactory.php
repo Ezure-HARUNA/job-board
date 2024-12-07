@@ -25,6 +25,7 @@ class JobFactory extends Factory
       'description' => $faker->realText(200),
       'salary' => $faker->numberBetween(5_000, 150_000),
       'location' => $faker->city,
+      //MEMO: enumでデータ管理している
       'category' => $faker->randomElement(Job::$category),
       'experience' => $faker->randomElement(Job::$experience),
     ];
