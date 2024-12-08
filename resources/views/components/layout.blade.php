@@ -7,10 +7,9 @@
 
   <title>求人サイト</title>
   @vite('resources/css/app.css')
-  <!-- Fonts -->
 </head>
 
-<body>
+<body class="mx-auto mt-10 max-w-2xl bg-slate-200 text-slate-700">
   {{ $slot }}
 </body>
 
