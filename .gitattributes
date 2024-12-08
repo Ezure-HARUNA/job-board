@@ -6,6 +6,16 @@
 *.md diff=markdown
 *.php diff=php
 
+* text=auto
+*.js text
+*.css text
+*.html text
+*.blade.php text
+*.vue text
+*.json text
+*.md text
+
+
 /.github export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
