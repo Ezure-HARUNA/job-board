@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <div class="text-2xl">でかい文字</div>
+  {{ $slot }}
 </body>
 
 </html>
