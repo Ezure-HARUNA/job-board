@@ -20,36 +20,6 @@ class JobFactory extends Factory
   public function definition(): array
   {
     $faker = FakerFactory::create('ja_JP');
-    $jobTitles = [
-      'ソフトウェアエンジニア',
-      'プロジェクトマネージャー',
-      'デザイナー',
-      'マーケティングマネージャー',
-      'データサイエンティスト',
-      'セールスエグゼクティブ',
-      'カスタマーサポート',
-      'ネットワークエンジニア',
-      'UI/UXデザイナー',
-      'フロントエンドエンジニア',
-      'バックエンドエンジニア',
-      'システムアナリスト',
-      'プロダクトマネージャー',
-      '人事マネージャー',
-      '経理担当',
-      'コンテンツクリエイター',
-      'SEOスペシャリスト',
-      'ITコンサルタント',
-      'ビジネスアナリスト',
-      'リサーチアシスタント',
-      'テクニカルライター',
-      'ビジュアルデザイナー',
-      'サポートエンジニア',
-      'クラウドエンジニア',
-      'デジタルマーケター',
-      'モバイルアプリ開発者',
-      'ソーシャルメディアマネージャー',
-      '広告運用スペシャリスト'
-    ];
 
     $jobDescriptions = [
       'ソフトウェアエンジニア' => [
@@ -201,19 +171,32 @@ class JobFactory extends Factory
       . $jobDescriptions[$title]['benefits']
       . "\n\n" . "### 求める人材\n"
       . $jobDescriptions[$title]['skills'];
+    $categories = [
+      '人事' => ['人事マネージャー', '経理担当'],
+      'コンサル' => ['ITコンサルタント'],
+      '営業' => ['セールスエグゼクティブ'],
+      'アナリスト' => ['ビジネスアナリスト', 'リサーチアシスタント', 'データサイエンティスト', 'システムアナリスト'],
+      'デザイナー' => ['ビジュアルデザイナー', 'デザイナー', 'UI/UXデザイナー'],
+      'エンジニア' => ['サポートエンジニア', 'クラウドエンジニア', 'モバイルアプリ開発者', 'ネットワークエンジニア', 'フロントエンドエンジニア', 'バックエンドエンジニア', 'プロダクトマネージャー', 'ソフトウェアエンジニア', 'プロジェクトマネージャー'],
+      'マーケター' => ['広告運用スペシャリスト', 'ソーシャルメディアマネージャー', 'デジタルマーケター', 'コンテンツクリエイター', 'SEOスペシャリスト', 'マーケティングマネージャー'],
+      'その他' => ['カスタマーサポート', 'テクニカルライター']
+    ];
+    $category = 'その他';
+    foreach ($categories as $cat => $jobs) {
+      if (in_array($title, $jobs)) {
+        $category = $cat;
+        break;
+      }
+    }
 
     return [
       'title' => $title,
       'description' => $description,
       'salary' => $faker->numberBetween(3000000, 15000000),
-      'location' => $faker->city,
-      //MEMO: enumでデータ管理している
-      'category' => $faker->randomElement(Job::$category),
+      'location' => $faker->company,
+      // MEMO: enumでデータ管理している
+      'category' => $category,
       'experience' => $faker->randomElement(Job::$experience),
     ];
   }
-  // public function down()
-  // {
-  //   Schema::dropIfExists('offered_jobs');
-  // }
 }

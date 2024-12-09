@@ -11,11 +11,12 @@ class Job extends Model
 
   protected $table = 'offered_jobs'; // テーブル名を明示的に指定
 
-  public static array $experience = ['entry', 'intermediate', 'senior'];
+  public static array $experience = ['エントリー', '中堅', 'シニア'];
   public static array $category = [
     'IT',
-    'Finance',
-    'Sales',
-    'Marketing'
+    '金融',
+    '営業',
+    'マーケティング',
+    '人事'
   ];
 }
