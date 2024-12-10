@@ -15,6 +15,13 @@
 *.json text
 *.md text
 
+# すべてのテキストファイルを自動的にLFに変換
+* text=auto
+
+# yarn.lockはLFを使用
+yarn.lock text eol=lf
+
+
 
 /.github export-ignore
 CHANGELOG.md export-ignore
