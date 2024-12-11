@@ -188,15 +188,22 @@ class JobFactory extends Factory
         break;
       }
     }
+    $experience = $faker->randomElement(Job::$experience);
+    $salary = match ($experience) {
+      'エントリー' => $faker->numberBetween(3000000, 5000000),
+      '中堅' => $faker->numberBetween(5000000, 8000000),
+      'シニア' => $faker->numberBetween(8000000, 15000000),
+      default => $faker->numberBetween(3000000, 15000000),
+    };
 
     return [
       'title' => $title,
       'description' => $description,
-      'salary' => $faker->numberBetween(3000000, 15000000),
+      'salary' => $salary,
       'location' => $faker->company,
       // MEMO: enumでデータ管理している
       'category' => $category,
-      'experience' => $faker->randomElement(Job::$experience),
+      'experience' => $experience,
     ];
   }
 }
