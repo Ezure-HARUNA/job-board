@@ -13,10 +13,13 @@ class Job extends Model
 
   public static array $experience = ['エントリー', '中堅', 'シニア'];
   public static array $category = [
-    'IT',
-    '金融',
+    'エンジニア',
+    '人事',
+    'デザイナー',
+    'マーケター',
     '営業',
-    'マーケティング',
-    '人事'
+    'アナリスト',
+    'コンサル',
+    'その他'
   ];
 }

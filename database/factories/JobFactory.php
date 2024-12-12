@@ -181,6 +181,7 @@ class JobFactory extends Factory
       'マーケター' => ['広告運用スペシャリスト', 'ソーシャルメディアマネージャー', 'デジタルマーケター', 'コンテンツクリエイター', 'SEOスペシャリスト', 'マーケティングマネージャー'],
       'その他' => ['カスタマーサポート', 'テクニカルライター']
     ];
+
     $category = 'その他';
     foreach ($categories as $cat => $jobs) {
       if (in_array($title, $jobs)) {

@@ -13,33 +13,23 @@
             <x-text-input name="min_salary" value="{{ request('min_salary') }}" placeholder="下限" />
             <x-text-input name="max_salary" value="{{ request('max_salary') }}" placeholder="上限" />
           </div>
-
         </div>
       </div>
-      <div>
-        <div class="mb-1 font-semibold">キャリアレベル</div>
-        <label class="mb-1 flex items-center">
-          <input type="radio" id="experience-all" name="experience" value=""
-            {{ !request('experience') ? 'checked' : '' }}>
-          <span class="ml-2">すべて</span>
-        </label>
-        <label class="mb-1 flex items-center">
-          <input type="radio" id="experience-entry" name="experience" value="エントリー" @checked('エントリー' === request('experience'))>
-          <span class="ml-2">エントリー</span>
-        </label>
-        <label class="mb-1 flex items-center">
-          <input type="radio" id="experience-mid" name="experience" value="中堅" @checked('中堅' === request('experience'))>
-          <span class="ml-2">中堅</span>
-        </label>
-        <label class="mb-1 flex items-center">
-          <input type="radio" id="experience-senior" name="experience" value="シニア" @checked('シニア' === request('experience'))>
-          <span class="ml-2">シニア</span>
-        </label>
+      <div class="mb-4 grid grid-cols-2 gap-4"> <!-- ここを修正 -->
+        <div>
+          <div class="mb-1 font-semibold">キャリアレベル</div>
+          <x-radio-group name="experience" :options="App\Models\Job::$experience" />
+        </div>
+        <div>
+          <div class="mb-1 font-semibold">職種</div>
+          <x-radio-group name="category" :options="App\Models\Job::$category" />
+        </div>
       </div>
+      <button
+        class="w-full border border-slate-500 text-slate-500 hover:bg-slate-500 hover:text-white font-bold py-2 px-4 rounded transition duration-300">
+        <i class="fas fa-search mr-2"></i>絞り込み
+      </button>
 
-      <div>4</div>
-      </div>
-      <button class="w-full">絞り込み</button>
     </form>
   </x-card>
   @foreach ($jobs as $job)
