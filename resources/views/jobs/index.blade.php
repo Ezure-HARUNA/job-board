@@ -5,13 +5,13 @@
       <div class="mb-4 grid grid-cols-2 gap-4">
         <div>
           <div class="mb-1 font-semibold">検索</div>
-          <x-text-input name="search" value="" placeholder="文字を入力してください" />
+          <x-text-input name="search" value="{{ request('search') }}" placeholder="文字を入力してください" />
         </div>
         <div>
           <div class="mb-1 font-semibold">給与</div>
           <div class="flex space-x-2">
-            <x-text-input name="min_salary" value="" placeholder="下限" />
-            <x-text-input name="max_salary" value="" placeholder="上限" />
+            <x-text-input name="min_salary" value="{{ request('min_salary') }}" placeholder="下限" />
+            <x-text-input name="max_salary" value="{{ request('max_salary') }}" placeholder="上限" />
           </div>
 
         </div>
