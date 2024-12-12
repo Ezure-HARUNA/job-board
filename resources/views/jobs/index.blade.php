@@ -28,10 +28,9 @@
           <x-radio-group name="category" :options="App\Models\Job::$category" />
         </div>
       </div>
-      <button
-        class="w-full border border-slate-500 text-slate-500 hover:bg-slate-500 hover:text-white font-bold py-2 px-4 rounded transition duration-300">
+      <x-button>
         <i class="fas fa-search mr-2"></i>絞り込み
-      </button>
+      </x-button>
 
     </form>
   </x-card>
