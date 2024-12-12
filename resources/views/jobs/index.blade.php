@@ -16,7 +16,27 @@
 
         </div>
       </div>
-      <div>3</div>
+      <div>
+        <div class="mb-1 font-semibold">キャリアレベル</div>
+        <label class="mb-1 flex items-center">
+          <input type="radio" id="experience-all" name="experience" value=""
+            {{ !request('experience') ? 'checked' : '' }}>
+          <span class="ml-2">すべて</span>
+        </label>
+        <label class="mb-1 flex items-center">
+          <input type="radio" id="experience-entry" name="experience" value="エントリー" @checked('エントリー' === request('experience'))>
+          <span class="ml-2">エントリー</span>
+        </label>
+        <label class="mb-1 flex items-center">
+          <input type="radio" id="experience-mid" name="experience" value="中堅" @checked('中堅' === request('experience'))>
+          <span class="ml-2">中堅</span>
+        </label>
+        <label class="mb-1 flex items-center">
+          <input type="radio" id="experience-senior" name="experience" value="シニア" @checked('シニア' === request('experience'))>
+          <span class="ml-2">シニア</span>
+        </label>
+      </div>
+
       <div>4</div>
       </div>
       <button class="w-full">絞り込み</button>
