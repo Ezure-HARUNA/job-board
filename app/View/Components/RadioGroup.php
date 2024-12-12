@@ -11,10 +11,8 @@ class RadioGroup extends Component
   /**
    * Create a new component instance.
    */
-  public function __construct(
-    public string $name,
-    public array $options
-  ) {
+  public function __construct(public string $name, public array $options)
+  {
     return view('components.radio-group');
   }
 
@@ -24,5 +22,11 @@ class RadioGroup extends Component
   public function render(): View|Closure|string
   {
     return view('components.radio-group');
+  }
+  public function optionsWithLabels(): array
+  {
+    return array_is_list($this->options) ?
+      array_combine($this->options, $this->options)
+      : $this->options;
   }
 }
