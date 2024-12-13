@@ -4,7 +4,11 @@
     <p class="text-sm text-slate-500 mb-4">
       {!! nl2br(e($job->description)) !!}
     </p>
+    <x-button class="w-full">
+      <a href="{{ route('job.application.create', ['job' => $job->id]) }}">応募する</a>
+    </x-button>
   </x-job-card>
+
   <x-card class="mb-4">
     <h2 class="mb-4 text-lg font-medium">
       {{ $job->employer->company_name }}の求人をもっと見る
