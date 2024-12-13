@@ -197,11 +197,19 @@ class JobFactory extends Factory
       default => $faker->numberBetween(3000000, 15000000),
     };
 
+    $prefixes = ['中央', '日本', '国際', '東洋', '第一', '東京', '新日本', '日本橋'];
+    $suffixes = ['商事', '工業', '電機', 'システム', 'インターナショナル', '技研', '通信', '開発'];
+
+    $prefix = $prefixes[array_rand($prefixes)];
+    $suffix = $suffixes[array_rand($suffixes)];
+    $companyName =
+      '株式会社' . $prefix . $suffix;
+
     return [
       'title' => $title,
       'description' => $description,
       'salary' => $salary,
-      'location' => $faker->company,
+      'location' => $faker->city,
       // MEMO: enumでデータ管理している
       'category' => $category,
       'experience' => $experience,

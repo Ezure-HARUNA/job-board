@@ -30,7 +30,7 @@ class EmployerFactory extends Factory
 
     $prefix = $prefixes[array_rand($prefixes)];
     $suffix = $suffixes[array_rand($suffixes)];
-    $companyName = $prefix . $suffix . '株式会社';
+    $companyName = '株式会社' . $prefix . $suffix;
 
     return [
       'company_name' => $companyName
