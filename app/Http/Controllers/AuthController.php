@@ -25,7 +25,7 @@ class AuthController extends Controller
       return redirect()->intended('/');
     } else {
       return redirect()->back()
-        ->with('error', 'Invalid credentials');
+        ->with('error', 'ログイン情報が間違っています');
     }
   }
   public function destroy()
