@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class JobApplicationController extends Controller
 {
+  use AuthorizesRequests;
 
   public function create(Job $job)
   {
@@ -17,6 +19,7 @@ class JobApplicationController extends Controller
 
   public function store(Job $job, Request $request)
   {
+    // $path = $file->store('cvs', 'local');
     Gate::authorize('apply', $job);
     // 入力された希望年収をバリデーション
     $validatedData = $request->validate([

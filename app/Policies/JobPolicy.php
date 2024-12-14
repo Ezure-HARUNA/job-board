@@ -8,21 +8,32 @@ use Illuminate\Auth\Access\Response;
 
 class JobPolicy
 {
+  public function viewAny(?User $user): bool
+  {
+    return true;
+  }
   /**
-   * Determine whether the user can view any models.
+   * Determine whether the user can view the model.
    */
-  public function viewAny(User $user): bool
+  public function view(?User $user, Job $job): bool
   {
     return true;
   }
 
-  /**
-   * Determine whether the user can view the model.
-   */
-  public function view(User $user, Job $job): bool
+  // public function apply(User $user, Job $job): bool
+  // {
+  //   return !$job->hasUserApplied($user);
+  // }
+
+  public function apply(User $user, Job $job): bool
   {
-    return true;
+    if (!$user) {
+      return false; // 認証されていないユーザーは応募できない
+    }
+    return !$job->hasUserApplied($user);
   }
+
+
 
   /**
    * Determine whether the user can create models.

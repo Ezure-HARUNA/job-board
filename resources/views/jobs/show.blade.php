@@ -4,9 +4,15 @@
     <p class="text-sm text-slate-500 mb-4">
       {!! nl2br(e($job->description)) !!}
     </p>
-    <x-button class="w-full">
-      <a href="{{ route('job.application.create', ['job' => $job->id]) }}">応募する</a>
-    </x-button>
+    @can('apply', $job)
+      <x-button class="w-full">
+        <a href="{{ route('job.application.create', ['job' => $job->id]) }}">応募する</a>
+      </x-button>
+    @else
+      <div class="text-center text-sm font-medium text-slate-500">
+        すでにこの求人には応募しています
+      </div>
+    @endcan
   </x-job-card>
 
   <x-card class="mb-4">

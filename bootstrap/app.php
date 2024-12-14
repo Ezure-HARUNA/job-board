@@ -11,7 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
     health: '/up',
   )
   ->withMiddleware(function (Middleware $middleware) {
-    //
+    // This is registering an alias for custom middleware
+    $middleware->alias([
+      'employer' => \App\Models\Employer::class,
+    ]);
   })
   ->withExceptions(function (Exceptions $exceptions) {
     //
