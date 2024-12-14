@@ -1,0 +1,12 @@
+{
+  "Whoops! Something went wrong.": "問題が発生しました！",
+  "Already registered?": "既に登録している場合はログインしてください",
+  "Register": "登録",
+  "Login": "ログイン",
+  "Username": "ユーザー名",
+  "Password": "パスワード",
+  "Confirm Password": "パスワード確認",
+  "Name": "ユーザ名",
+  "Email": "メールアドレス",
+  "validation.required": "入力が必要です。"
+}

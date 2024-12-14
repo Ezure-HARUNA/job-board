@@ -23,8 +23,11 @@ class JobApplicationController extends Controller
     Gate::authorize('apply', $job);
     // 入力された希望年収をバリデーション
     $validatedData = $request->validate([
-      'expected_salary' => 'required|numeric|min:1|max:100000000'
+      'expected_salary' => 'required|min:1|max:100000000',
+      'cv' => 'required|file|mimes:pdf|max:2048'
     ]);
+    $file = $request->file('cv');
+    $path = $file->store('cvs', 'private');
 
     // 万円単位の希望年収を円単位に変換
     $expectedSalaryInYen = $validatedData['expected_salary'] * 10000;
@@ -33,6 +36,7 @@ class JobApplicationController extends Controller
     $job->jobApplications()->create([
       'user_id' => $request->user()->id,
       'expected_salary' => $expectedSalaryInYen, // 変換後の円単位の希望年収
+      'cv_path' => $path, // 画像のパス
     ]);
 
     return redirect()->route('jobs.show', $job)
