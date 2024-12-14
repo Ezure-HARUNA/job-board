@@ -14,13 +14,16 @@
   <nav class="mb-8 flex justify-between text-lg font-medium">
     <ul class="flex space-x-2">
       <li>
-        <a href="{{ route('jobs.index') }}">Home</a>
+        <a href="{{ route('jobs.index') }}"><i class="fas fa-home mr-2"></i>求人サイトトップ</a>
       </li>
     </ul>
     <ul class="flex space-x-2">
       @auth
         <li>
-          {{ auth()->user()->name ?? 'ゲストユーザー' }}
+          {{-- {{ auth()->user()->name ?? 'ゲストユーザー' }} --}}
+          <a href="{{ route('my-job-applications.index') }}">
+            {{ auth()->user()->name ?? 'ゲストユーザー' }}
+          </a>
         </li>
         <li>
           <form x-data="{ open: false }"

@@ -1,5 +1,6 @@
 <x-layout>
   <x-breadcrumbs class="mb-4" :links="['求人一覧' => route('jobs.index')]" />
+  <h2 class="text-lg font-medium mb-4">応募した求人一覧</h2>
   <x-card class="mb-4 text-sm" x-data="">
     <form x-ref="filters" id="filtering-form" action="{{ route('jobs.index') }}" method="GET">
       <div class="mb-4 grid grid-cols-2 gap-4">

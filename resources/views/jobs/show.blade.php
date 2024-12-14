@@ -1,5 +1,6 @@
 <x-layout>
   <x-breadcrumbs class="mb-4" :links="['求人一覧' => route('jobs.index'), $job->title => '#']" />
+  <h2 class="text-lg font-medium mb-4">応募した求人一覧</h2>
   <x-job-card :$job>
     <p class="text-sm text-slate-500 mb-4">
       {!! nl2br(e($job->description)) !!}
@@ -29,7 +30,7 @@
               </a>
             </div>
             <div class="text-xs">
-              {{ $otherJob->created_at->diffForHumans() }}
+              {{ $otherJob->updated_at->diffForHumans() }}
             </div>
           </div>
           <div class="text-xs">
