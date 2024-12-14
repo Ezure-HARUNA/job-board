@@ -4,17 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Job;
+use Illuminate\Support\Facades\Gate;
 
 class JobApplicationController extends Controller
 {
 
   public function create(Job $job)
   {
+    Gate::authorize('apply', $job);
     return view('job_application.create', ['job' => $job]);
   }
 
   public function store(Job $job, Request $request)
   {
+    Gate::authorize('apply', $job);
     // 入力された希望年収をバリデーション
     $validatedData = $request->validate([
       'expected_salary' => 'required|numeric|min:1|max:100000000'
