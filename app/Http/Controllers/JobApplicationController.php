@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Job;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Http\Requests\JobRequest;
+use App\Http\Requests\JobApplicationRequest;
 
 class JobApplicationController extends Controller
 {
@@ -17,15 +19,14 @@ class JobApplicationController extends Controller
     return view('job_application.create', ['job' => $job]);
   }
 
-  public function store(Job $job, Request $request)
+
+
+  public function store(JobApplicationRequest $request, Job $job)
   {
-    // $path = $file->store('cvs', 'local');
     Gate::authorize('apply', $job);
-    // 入力された希望年収をバリデーション
-    $validatedData = $request->validate([
-      'expected_salary' => 'required|min:1|max:100000000',
-      'cv' => 'required|file|mimes:pdf|max:2048'
-    ]);
+
+    $validatedData = $request->validated();
+
     $file = $request->file('cv');
     $path = $file->store('cvs', 'private');
 
@@ -35,8 +36,8 @@ class JobApplicationController extends Controller
     // ジョブアプリケーションを作成
     $job->jobApplications()->create([
       'user_id' => $request->user()->id,
-      'expected_salary' => $expectedSalaryInYen, // 変換後の円単位の希望年収
-      'cv_path' => $path, // 画像のパス
+      'expected_salary' => $expectedSalaryInYen,
+      'cv_path' => $path,
     ]);
 
     return redirect()->route('jobs.show', $job)

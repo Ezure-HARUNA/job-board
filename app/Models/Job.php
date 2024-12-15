@@ -37,7 +37,7 @@ class Job extends Model
     'その他'
   ];
 
-  public function employer(): BelongsTo
+  public function employer()
   {
     return $this->belongsTo(Employer::class);
   }

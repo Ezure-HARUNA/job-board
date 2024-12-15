@@ -5,6 +5,7 @@
       'Apply' => '#',
   ]" />
   <x-job-card :$job />
+
   <x-card>
     <h2 class="mb-4 text-lg font-medium">
       求人に応募する

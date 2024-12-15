@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Job;
 use App\Policies\JobPolicy;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,14 +20,14 @@ class AppServiceProvider extends ServiceProvider
   /**
    * Bootstrap any application services.
    */
+  // app/Providers/AppServiceProvider.php
   public function boot(): void
   {
-    // ポリシーを登録
     $this->registerPolicies();
-
-    // Jobモデルに対するポリシーを登録
-    \Illuminate\Support\Facades\Gate::policy(Job::class, JobPolicy::class);
+    \Illuminate\Support\Facades\Gate::policy(Job::class, \App\Policies\JobPolicy::class);
+    Route::model('job', Job::class); // 修正ポイント
   }
+
 
   /**
    * Register the application's policies.

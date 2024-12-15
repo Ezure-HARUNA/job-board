@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -12,12 +13,9 @@ class AuthController extends Controller
     return view('auth.create');
   }
 
-  public function store(Request $request)
+  public function store(LoginRequest $request)
   {
-    $request->validate([
-      'email' => 'required|email',
-      'password' => 'required'
-    ]);
+    $validatedData = $request->validated();
     $credentials = $request->only('email', 'password');
     $remember = $request->filled('remember');
 

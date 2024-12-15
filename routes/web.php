@@ -7,6 +7,9 @@ use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\MyJobApplicationController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\MyJobController;
+use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', fn() => to_route('jobs.index'));
 
@@ -31,5 +34,7 @@ Route::resource('my-job-applications', MyJobApplicationController::class)
 Route::resource('employer', EmployerController::class)
   ->only(['create', 'store']);
 
-Route::middleware('employer')
-  ->resource('my-jobs', MyJobController::class);
+// Route::middleware('employer')
+//   ->resource('my-jobs', MyJobController::class);
+
+Route::resource('my-jobs', MyJobController::class)->middleware('auth');

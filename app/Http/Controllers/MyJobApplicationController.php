@@ -13,7 +13,7 @@ class MyJobApplicationController extends Controller
   public function index(Request $request)
   {
     return view(
-      'my_job_application.index',
+      'my-job-applications.index',
       [
         'applications' => $request->user()->jobApplications()
           ->with([

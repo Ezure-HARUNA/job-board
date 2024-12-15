@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\EmployerRequest;
 use App\Models\Employer;
 use Illuminate\Support\Facades\Gate;
 
@@ -12,18 +12,18 @@ class EmployerController extends Controller
   {
     Gate::authorize('create', Employer::class);
   }
+
   public function create()
   {
     return view('employer.create');
   }
-  public function store(Request $request)
+
+  public function store(EmployerRequest $request)
   {
     Gate::authorize('create', Employer::class);
-    $request->user()->employer()->create(
-      $request->validate([
-        'company_name' => 'required|min:3|unique:employers,company_name'
-      ])
-    );
+
+    $request->user()->employer()->create($request->validated());
+
     return redirect()->route('jobs.index')
       ->with('success', 'あなたの会社のアカウントが作成されました！');
   }
