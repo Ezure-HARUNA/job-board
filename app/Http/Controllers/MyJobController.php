@@ -41,9 +41,9 @@ class MyJobController extends Controller
    */
   public function store(JobRequest $request)
   {
-    Gate::authorize('store', Job::class);
+    Gate::authorize('create', Job::class);
 
-    $validatedData = $request->validate();
+    $validatedData = $request->validated();
 
     $expectedSalaryInYen = $validatedData['salary'] * 10000;
 

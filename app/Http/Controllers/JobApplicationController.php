@@ -22,7 +22,7 @@ class JobApplicationController extends Controller
     // $path = $file->store('cvs', 'local');
     Gate::authorize('apply', $job);
     // 入力された希望年収をバリデーション
-    $validatedData = $request->validate([
+    $validatedData = $request->validated([
       'expected_salary' => 'required|min:1|max:100000000',
       'cv' => 'required|file|mimes:pdf|max:2048'
     ]);

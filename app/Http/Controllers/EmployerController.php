@@ -20,7 +20,7 @@ class EmployerController extends Controller
   {
     Gate::authorize('create', Employer::class);
     $request->user()->employer()->create(
-      $request->validate([
+      $request->validated([
         'company_name' => 'required|min:3|unique:employers,company_name'
       ])
     );

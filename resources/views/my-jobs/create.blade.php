@@ -15,8 +15,8 @@
         </div>
         <div class="col-span-2">
           <x-label for="salary" :required="true">年収</x-label>
-          <div class="flex items-center">
-            <x-text-input name="salary" type="number" class="flex-grow" />
+          <div class="flex items-center mb-4">
+            <x-text-input name="salary" type="number" />
             <span class="ml-2 text-slate-700">万円</span>
           </div>
         </div>
