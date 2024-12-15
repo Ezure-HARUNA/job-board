@@ -25,6 +25,9 @@
           </a>
         </li>
         <li>
+          <a href="{{ route('my-jobs.index') }}">掲載中の求人</a>
+        </li>
+        <li>
           <form x-data="{ open: false }"
             @submit.prevent="open = confirm('本当にログアウトしますか？'); if (open) { $event.target.submit(); }"
             action="{{ route('auth.destroy') }}" method="POST">
