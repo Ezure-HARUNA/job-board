@@ -18,7 +18,9 @@ class MyJobApplicationController extends Controller
         'applications' => $request->user()->jobApplications()
           ->with([
             'job' => fn($query) => $query->withCount('jobApplications')
-              ->withAvg('jobApplications', 'expected_salary'),
+              ->withAvg('jobApplications', 'expected_salary')
+              // ソフトデリートで消したデータも表示するよって意味
+              ->withTrashed(),
             'job.employer'
           ])
           ->latest()->get()

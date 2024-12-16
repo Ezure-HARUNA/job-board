@@ -9,17 +9,6 @@ use App\Http\Requests\JobRequest;
 
 class MyJobController extends Controller
 {
-  // public function index(Request $request)
-  // {
-  //   dd($request);
-  //   Gate::authorize('viewAnyEmployer', Job::class);
-  //   return view('my-jobs.index', [
-  //     'jobs' => $request->user()->employer
-  //       ->jobs()
-  //       ->with(['employer', 'jobApplications', 'jobApplications.user'])
-  //       ->get()
-  //   ]);
-  // }
   public function index(Request $request)
   {
     Gate::authorize('viewAnyEmployer', Job::class);
@@ -27,6 +16,7 @@ class MyJobController extends Controller
     $jobs = $request->user()->employer
       ->jobs()
       ->with(['employer', 'jobApplications', 'jobApplications.user'])
+      ->withTrashed()
       ->get();
 
     return view('my-jobs.index', [
