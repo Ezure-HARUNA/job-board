@@ -24,17 +24,9 @@ class JobApplicationController extends Controller
   public function store(JobApplicationRequest $request, Job $job)
   {
     Gate::authorize('apply', $job);
-<<<<<<< HEAD
 
     $validatedData = $request->validated();
 
-=======
-    // 入力された希望年収をバリデーション
-    $validatedData = $request->validated([
-      'expected_salary' => 'required|min:1|max:100000000',
-      'cv' => 'required|file|mimes:pdf|max:2048'
-    ]);
->>>>>>> 765dc99c73c446b3b1b8a36b8b838cbe96d79c01
     $file = $request->file('cv');
     $path = $file->store('cvs', 'private');
 
