@@ -72,25 +72,6 @@ class MyJobController extends Controller
   }
 
 
-
-  // public function update(JobRequest $request, Job $job)
-  // {
-  //   if (!Gate::allows('update', $job)) {
-  //     $errorMessage = 'この求人情報を編集する権限がありません。';
-  //     if ($job->jobApplications()->count() > 0) {
-  //       $errorMessage = '応募がある場合、求人情報を変更できません。';
-  //     }
-  //     return redirect()->route('my-jobs.index')
-  //       ->with('error', $errorMessage);
-  //   }
-
-  //   $validatedData = $request->validated();
-  //   $expectedSalaryInYen = $validatedData['salary'] * 10000;
-  //   $job->update(array_merge($validatedData, ['salary' => $expectedSalaryInYen]));
-
-  //   return redirect()->route('my-jobs.index')
-  //     ->with('success', '求人の更新に成功しました！');
-  // }
   public function update(JobRequest $request, $id)
   {
     $job = Job::find($id);
@@ -115,10 +96,15 @@ class MyJobController extends Controller
   }
 
 
-  public function destroy(Job $job)
+  public function destroy(Job $job, $id)
   {
-    dd($job);
+    $job = Job::find($id);
+    if (!$job) {
+      return redirect()->route('my-jobs.index')->with('error', '求人情報が見つかりませんでした。');
+    }
+
     Gate::authorize('delete', $job);
+
     $job->delete();
     return redirect()->route('my-jobs.index')
       ->with('success', '求人の削除に成功しました！');
