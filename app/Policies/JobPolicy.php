@@ -54,9 +54,9 @@ class JobPolicy
   // }
   public function update(User $user, Job $job): bool|Response
   {
-    // if ($job->employer === null || $job->employer->user_id !== $user->id) {
-    //   return Response::deny('この求人情報を編集する権限がありません。');
-    // }
+    if ($job->employer->user_id !== $user->id) {
+      return false;
+    }
 
     if ($job->jobApplications()->count() > 0) {
       return Response::deny('応募がある場合、求人情報を変更できません。');
@@ -64,24 +64,6 @@ class JobPolicy
 
     return true;
   }
-  // public function update(User $user, Job $job): bool
-  // {
-  //   if ($job->employer === null) {
-  //     return false;
-  //   }
-
-  //   if ($job->employer->user_id !== $user->id) {
-  //     return false;
-  //   }
-
-  //   if ($job->jobApplications()->count() > 0) {
-  //     return false;
-  //   }
-
-  //   return true;
-  // }
-
-
   /**
    * Determine whether the user can delete the model.
    */
