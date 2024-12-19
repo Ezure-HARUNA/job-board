@@ -14,11 +14,13 @@ class Employer extends Model
 
   public function jobs(): HasMany
   {
+    //雇用主は求人を複数持つため、1対多のリレーション
     return $this->hasMany(Job::class);
   }
 
   public function user(): BelongsTo
   {
+    //雇用主はユーザーを1人持つため、1対1のリレーション
     return $this->belongsTo(User::class);
   }
 }
